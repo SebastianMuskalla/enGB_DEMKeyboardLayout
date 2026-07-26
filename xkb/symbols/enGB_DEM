@@ -1,0 +1,72 @@
+// United Kingdom plus German and Math
+//
+// Linux/XKB port of enGB_DEM.klc. This layout is intended for ISO (105-key)
+// keyboards. Levels are: Base, Shift, AltGr, Shift+AltGr.
+
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "gb(basic)"
+
+    name[Group1] = "English (UK, German and Math)";
+
+    // Number row: superscripts and subscripts.
+    key <AE01> { [ 1, exclam,      onesuperior, U2081 ] };
+    key <AE02> { [ 2, quotedbl,    twosuperior, U2082 ] };
+    key <AE03> { [ 3, sterling,    threesuperior, U2083 ] };
+    key <AE04> { [ 4, dollar,      U2074, U2084 ] };
+    key <AE05> { [ 5, percent,     U2075, U2085 ] };
+    key <AE06> { [ 6, asciicircum, U2076, U2086 ] };
+    key <AE07> { [ 7, ampersand,   U2077, U2087 ] };
+    key <AE08> { [ 8, asterisk,    U2078, U2088 ] };
+    key <AE09> { [ 9, parenleft,   U2079, U2089 ] };
+    key <AE10> { [ 0, parenright,  U2070, U2080 ] };
+    key <AE11> { [ minus, underscore, plusminus, U2248 ] };
+    key <AE12> { [ equal, plus,    U2260, U2261 ] };
+
+    // Top letter row.
+    key <AD01> { [ q, Q, at,       U03B1 ] };
+    key <AD02> { [ w, W, U2026,    U03C9 ] };
+    key <AD03> { [ e, E, EuroSign, U03B5 ] };
+    key <AD04> { [ r, R, U221A,    U03C1 ] };
+    key <AD05> { [ t, T, U2202,    U03C4 ] };
+    key <AD06> { [ y, Y, U222B,    U03C5 ] };
+    key <AD07> { [ u, U, udiaeresis, Udiaeresis ] };
+    key <AD08> { [ i, I, U221E,    U03B9 ] };
+    key <AD09> { [ o, O, odiaeresis, Odiaeresis ] };
+    key <AD10> { [ p, P, section,  U03C0 ] };
+    key <AD11> { [ bracketleft,  braceleft,  guillemotleft,  U2039 ] };
+    key <AD12> { [ bracketright, braceright, guillemotright, U203A ] };
+
+    // Home row.
+    key <AC01> { [ a, A, adiaeresis, Adiaeresis ] };
+    key <AC02> { [ s, S, ssharp,     U1E9E ] };
+    key <AC03> { [ d, D, U2300,      U03B4 ] };
+    key <AC04> { [ f, F, U2153,      U03C6 ] };
+    key <AC05> { [ g, G, U2154,      U03B3 ] };
+    key <AC06> { [ h, H, onehalf,    U03B8 ] };
+    key <AC07> { [ j, J, onequarter, U03B7 ] };
+    key <AC08> { [ k, K, threequarters, U03BA ] };
+    key <AC09> { [ l, L, U215B,      U03BB ] };
+    key <AC10> { [ semicolon, colon, U215C, U03A3 ] };
+    key <AC11> { [ apostrophe, at,   U215D, U03A0 ] };
+
+    // Bottom row.
+    key <AB01> { [ z, Z, U201C, U2018 ] };
+    key <AB02> { [ x, X, U201D, U2019 ] };
+    key <AB03> { [ c, C, copyright, U03C7 ] };
+    key <AB04> { [ v, V, multiply,  U039E ] };
+    key <AB05> { [ b, B, periodcentered, U03B2 ] };
+    key <AB06> { [ n, N, U2030, U03BD ] };
+    key <AB07> { [ m, M, U03BC, U03C3 ] };
+    key <AB08> { [ comma, less,    U2264, U03C8 ] };
+    key <AB09> { [ period, greater, U2265, U03B6 ] };
+    key <AB10> { [ slash, question, division, U03BE ] };
+
+    // UK-specific punctuation keys. <LSGT> is the extra ISO key.
+    key <TLDE> { [ grave, notsign, brokenbar, degree ] };
+    key <BKSL> { [ numbersign, asciitilde, U215E, U0394 ] };
+    key <LSGT> { [ backslash, bar, U201E, U201A ] };
+
+    // Make the right Alt key the Level3 selector (AltGr).
+    include "level3(ralt_switch)"
+};

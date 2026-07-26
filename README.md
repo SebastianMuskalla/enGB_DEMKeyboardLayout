@@ -29,8 +29,10 @@ For more information on which symbol is mapped to which key, see the [images](#i
 
 
 
-Installation
-------------
+Installation on Windows
+-----------------------
+
+### Installing from Release
 
 In order to install the keyboard layour, proceed as follows:
 
@@ -47,8 +49,7 @@ In order to select this keyboard layout, proceed as follows:
 * Click the keyboard icon.
 * In the dropdown menu for "Override for default input method", select "United Kingdom plus German and Math".
 
-Compiling / Modifying the layout
---------------------------------
+### Compiling / Modifying the layout
 
 If you want to compile (or modify) the layout yourself, proceed as follows.
 
@@ -73,6 +74,50 @@ If you want to compile (or modify) the layout yourself, proceed as follows.
 
   **Note:** The warnings that will appear can be ignored. (They come from non-ASCII symbols being mapped to keys, symbols being mapped to the key that is exclusive to ISO keyboards, and the `@` symbol being mapped to two different keys.)
 
+Linux
+-----
+
+We also provide the layout as an XKB layout for Linux.
+
+The layout was tested on Fedora Kinoite 44 running Wayland and KDE Plasma.
+The instructions may differ for other distributions.
+
+Download the repository (e.g. by cloning it or by downloading it as a `.zip` and extracting it.)
+
+### Verifying the layout
+
+Ensure that `xkbcli` CLI tool is available.
+
+From the repository root, run the following command.
+
+```sh
+xkbcli compile-keymap \
+  --include ./xkb \
+  --include-defaults \
+  --test \
+  --model pc105 \
+  --layout enGB_DEM
+```
+
+If it succeeds (no error output, no error code), you are good to go.
+
+
+### Install for the current user
+
+Copy the contents of the `xkb` folder in the repository to `./config/xkb` in your home folder, e.g. with the following commands.
+
+```sh
+mkdir -p ~/.config/xkb/symbols ~/.config/xkb/rules
+cp xkb/symbols/enGB_DEM ~/.config/xkb/symbols/
+cp xkb/rules/evdev.xml ~/.config/xkb/rules/
+```
+
+Log out and back in. You should now be able to add the layout in system settings.
+
+
+Compiling / Modifying the layout
+--------------------------------
+
 Images
 ------
 
@@ -81,7 +126,6 @@ Legend:\
 
 ![all layers](img/all.png)
 *All layers*
-
 
 ![base layer](img/base.png)
 *Base layer*
@@ -132,7 +176,7 @@ Tables
 | K   | k      | K     | ¾     | κ           |
 | L   | l      | L     | ⅛     | λ           |
 | Z   | z      | Z     | “     | ‘           |
-| X   | x      | X     | “     | ’           |
+| X   | x      | X     | ”     | ’           |
 | C   | c      | C     | ©     | χ           |
 | V   | v      | V     | ×     | Ξ           |
 | B   | b      | B     | ·     | β           |
@@ -293,7 +337,7 @@ Tables
 | K   | ¾      | U+00BE | Vulgar Fraction Three Quarters             |         |
 | L   | ⅛      | U+215B | Vulgar Fraction One Eight                  |         |
 | Z   | “      | U+201C | Left Double Quotation Mark                 | English left quotation mark |
-| X   | “      | U+201d | Right Double Quotation Mark                | German/English right quotation mark |
+| X   | ”      | U+201d | Right Double Quotation Mark                | German/English right quotation mark |
 | C   | ©      | U+00A9 | Copyright Sign                             |         |
 | V   | ×      | U+00D7 | Multiplication Sign                        |         |
 | B   | ·      | U+00B7 | Middle Dot                                 |         |
@@ -369,6 +413,6 @@ Tables
 License
 -------
 
-Copyright 2020-2022 Sebastian Muskalla
+Copyright 2020-2026 Sebastian Muskalla
 
 This keyboard layout is free and open software, licensed under the MIT License, see [LICENSE](LICENSE)
