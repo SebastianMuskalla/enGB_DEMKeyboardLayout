@@ -114,9 +114,36 @@ cp xkb/rules/evdev.xml ~/.config/xkb/rules/
 
 Log out and back in. You should now be able to add the layout in system settings.
 
+### Variant: Caps Lock as backslash
 
-Compiling / Modifying the layout
---------------------------------
+The folder `xkb-caps-as-backslash` contains an additional layout `enGB_DEM_caps` that is identical to `enGB_DEM`, except that the *Caps Lock* key acts as a copy of the ISO key `\|` (between left *Shift* and *Z*).
+Caps Lock functionality is removed.
+
+This may be helpful on laptop keyboards where the ISO key is missing or misplaced.
+
+To verify it, run the following command from the repository root.
+
+```sh
+xkbcli compile-keymap \
+  --include ./xkb-caps-as-backslash \
+  --include-defaults \
+  --test \
+  --model pc105 \
+  --layout enGB_DEM_caps
+```
+
+To install it for the current user, copy both symbol files and the `evdev.xml` from the `xkb-caps-as-backslash` folder, which registers both layouts.
+(If you have already installed the regular layout as described above, this overwrites its `evdev.xml`.)
+
+```sh
+mkdir -p ~/.config/xkb/symbols ~/.config/xkb/rules
+cp xkb/symbols/enGB_DEM ~/.config/xkb/symbols/
+cp xkb-caps-as-backslash/symbols/enGB_DEM_caps ~/.config/xkb/symbols/
+cp xkb-caps-as-backslash/rules/evdev.xml ~/.config/xkb/rules/
+```
+
+Log out and back in. You should now be able to add "English (UK, German and Math, Caps as \\|)" in system settings.
+
 
 Images
 ------
