@@ -144,6 +144,48 @@ cp xkb-caps-as-backslash/rules/evdev.xml ~/.config/xkb/rules/
 
 Log out and back in. You should now be able to add "English (UK, German and Math, Caps as \\|)" in system settings.
 
+MacOS
+-----
+
+We also provide the layout as a keyboard layout file for macOS: [macos/enGB_DEM.keylayout](macos/enGB_DEM.keylayout).
+
+Since there is no *AltGr* key on Mac keyboards, the *Option* key takes its role:
+the AltGr layer becomes the **Option layer**, and the AltGr+Shift layer becomes the **Option+Shift layer**.
+Apart from that, all symbols are on the same keys as in the Windows and Linux versions.
+
+### Install for the current user
+
+* Download the file `macos/enGB_DEM.keylayout` (e.g. by cloning the repository or by downloading it as a `.zip` and extracting it).
+* Copy it to the folder `Library/Keyboard Layouts` in your home folder (no administrator rights needed), e.g. with the following commands.
+
+  ```sh
+  mkdir -p ~/Library/Keyboard\ Layouts
+  cp macos/enGB_DEM.keylayout ~/Library/Keyboard\ Layouts/
+  ```
+
+  (Alternatively, to install it for all users, copy it to `/Library/Keyboard Layouts/` instead. This requires administrator rights.)
+* Restart the system.
+* Open System Settings, go to "Keyboard", and click "Edit…" next to "Input Sources".
+* Click "+", select "Others" at the bottom of the language list, select "United Kingdom plus German and Math", and click "Add".
+* Select the layout from the input menu in the menu bar.
+
+### Differences to the Windows and Linux versions
+
+* *Option* replaces *AltGr*.
+  Left and right *Option* (as well as left and right *Shift*) are not distinguished, as this does not work reliably on current versions of macOS.
+  In particular, the characters that macOS usually places on the *Option* layer are not available.
+* *Control* and *Command* never change which symbol is produced, e.g. *Shift+A*, *Shift+Control+A*, *Shift+Command+A*, and *Shift+Control+Command+A* are all treated as `A`.
+* *Caps Lock* capitalizes letters, and also ä ö ü ß on the *Option* layer (Ä Ö Ü ẞ).
+  Following the macOS convention, *Shift* with *Caps Lock* active still produces capital letters (on Windows, it produces small letters).
+* The two keys `` `¬¦ `` (left of *1*) and `\|` (between left *Shift* and *Z*) are only mapped correctly if macOS recognizes the keyboard as an ISO keyboard.
+  If they are swapped, change the keyboard type to ISO (System Settings → Keyboard → "Change Keyboard Type…").
+* The layout follows the positions of the (PC) United Kingdom layout, not the Apple "British" layout, so some symbols differ from the labels on Apple keyboards (e.g. `"` is on *Shift+2* and `@` is on *Shift+'*).
+
+### Conflicts with keyboard shortcuts in applications
+
+Some applications use *Option* and *Option+Shift* combinations as keyboard shortcuts.
+In this case, the application executes the shortcut instead of typing the symbol.
+This cannot be fixed in the keyboard layout; the shortcut has to be removed in the application.
 
 Images
 ------
@@ -220,7 +262,7 @@ Tables
 |`\\|`| \      |\|     | „     | ‚           |
 |`,<` | ,      | <     | ≤     | ψ           |
 |`.>` | .      | >     | ≥     | ζ           |
-|`/?` | /      | ?     | ÷     | χ           |
+|`/?` | /      | ?     | ÷     | ζ           |
 
 
 ### Base layer (no modifier)
